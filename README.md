@@ -50,8 +50,8 @@ ADMIN_PASSWORD=roofing2026!
 ## Admin Test Credentials
 
 To access the Owner Panel (`http://localhost:5173/admin`):
-- **Username:** `admin`
-- **Password:** `roofing2026!`
+- **Username:** `rushi18`
+- **Password:** `Rushi@18`
 
 ## Features implemented
 

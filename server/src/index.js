@@ -97,8 +97,8 @@ app.post('/api/estimate', async (req, res) => {
 // POST /api/auth/login - Simple login check
 app.post('/api/auth/login', (req, res) => {
   const { username, password } = req.body;
-  const adminUser = process.env.ADMIN_USERNAME || 'admin';
-  const adminPass = process.env.ADMIN_PASSWORD || 'roofing2026!';
+  const adminUser = process.env.ADMIN_USERNAME || 'rushi18';
+  const adminPass = process.env.ADMIN_PASSWORD || 'Rushi@18';
 
   if (username === adminUser && password === adminPass) {
     res.json({ success: true, message: 'Valid credentials' });

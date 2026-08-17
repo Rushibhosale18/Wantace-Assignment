@@ -10,8 +10,8 @@ function requireOwnerAuth(req, res, next) {
   const user = auth[0];
   const pass = auth[1];
 
-  const adminUser = process.env.ADMIN_USERNAME || 'admin';
-  const adminPass = process.env.ADMIN_PASSWORD || 'roofing2026!';
+  const adminUser = process.env.ADMIN_USERNAME || 'rushi18';
+  const adminPass = process.env.ADMIN_PASSWORD || 'Rushi@18';
 
   if (user === adminUser && pass === adminPass) {
     return next();
