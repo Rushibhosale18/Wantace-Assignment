@@ -1,0 +1,64 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Config {
+  id               Int        @id @default(1)
+  config_version   Int        @default(1)
+  business_name    String
+  business_region  String
+  business_currency String
+  waste_factor     Float      @default(0.10)
+  permit_flat_fee  Float      @default(350.0)
+  range_spread_pct Float      @default(12.0)
+  
+  questions        Question[]
+}
+
+model Question {
+  id          Int      @id @default(autoincrement())
+  configId    Int      @default(1)
+  config      Config   @relation(fields: [configId], references: [id])
+  
+  key         String   @unique
+  label       String
+  type        String   // 'number' or 'select'
+  unit        String?
+  required    Boolean  @default(true)
+  min         Float?
+  max         Float?
+  active      Boolean  @default(true)
+  order       Int      @default(0)
+  
+  options     Option[]
+}
+
+model Option {
+  id                Int      @id @default(autoincrement())
+  questionId        Int
+  question          Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  
+  value             String
+  label             String
+  rate_per_sqft     Float?
+  multiplier        Float?
+  tear_off_per_sqft Float?
+  order             Int      @default(0)
+}
+
+model Lead {
+  id             String   @id @default(uuid())
+  captured_at    DateTime @default(now())
+  config_version Int
+  name           String
+  phone          String
+  email          String
+  answers        String   // Stored as JSON string
+  estimate_low   Float
+  estimate_high  Float
+}
